@@ -4,11 +4,36 @@ from PIL import Image
 import os
 import glob
 import json
- 
+from huggingface_hub import hf_hub_download
+
+HUGGINGFACE_API_TOKEN = os.getenv('HUGGINGFACE_API_TOKEN')
+
+#Load the model
+model_id = 'knowledgator/comprehend_it-base'
+filenames = [
+    "config.json",
+    "added_tokens.json",
+    "pytorch_model.bin",
+    "special_tokens_map.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "spm.model"
+]
+
+for filename in filenames:
+    downloaded_model_path = hf_hub_download(
+        repo_id=model_id,
+        filename=filename,
+        token=HUGGINGFACE_API_TOKEN
+    )
+
+print(f"Model downloaded to {downloaded_model_path}")
+
+
 def rename_file(original_path, new_name):
     """
-   Rename the file to the new name.
-   """
+    Rename the file to the new name.
+    """
     directory = os.path.dirname(original_path)
     new_path = os.path.join(directory, new_name)
     os.rename(original_path, new_path)
@@ -17,8 +42,8 @@ def rename_file(original_path, new_name):
  
 def ocr_core(filename):
     """
-   Perform OCR on a single image, return the text
-   """
+    Perform OCR on a single image, return the text
+    """
     try:
         image = Image.open(filename)
         text = pytesseract.image_to_string(image) 
@@ -30,8 +55,8 @@ def ocr_core(filename):
  
 def perform_ocr(directory_path, output_file):
     """
-   Perform OCR on all images in a given directory, save the results to a JSON file
-   """
+    Perform OCR on all images in a given directory, save the results to a JSON file
+    """
     image_extensions = ['*.png', '*.jpg', '*.jpeg', '*.tiff', '*.bmp', '*.gif']
     image_paths = []
     for extension in image_extensions:
