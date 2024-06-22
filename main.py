@@ -7,13 +7,19 @@ import json
 from huggingface_hub import hf_hub_download
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 from dotenv import load_dotenv
+import logging
+import time
 
+
+#Set up logging
+logging.basicConfig(filename='ocr_classification.log', level=logging.INFO,
+                    format='%(asctime)s %(levelname)s:%(message)s')
 
 #Set the environment variables
 load_dotenv()
 HUGGINGFACE_ACCESS_TOKEN = os.getenv('HUGGINGFACE_ACCESS_TOKEN')
 DIRECTORY_PATH = os.getenv('DIRECTORY_PATH')
-
+DP_LENGTH = len(DIRECTORY_PATH) + 1
 
 #Load the model
 model_id = 'knowledgator/comprehend_it-base'
@@ -33,14 +39,17 @@ for filename in filenames:
         filename=filename,
         token=HUGGINGFACE_ACCESS_TOKEN
     )
-#print(f"Model downloaded to {downloaded_model_path}")
+    logging.info(f"Model file downloaded: {downloaded_model_path}")
 
 #Create the classifier pipeline
 tokenizer = AutoTokenizer.from_pretrained(model_id, legacy=False)
 model = AutoModelForSequenceClassification.from_pretrained(model_id)
 
-pipeline = pipeline('zero-shot-classification', model=model, device=-1, tokenizer=tokenizer, max_length=512, truncation=True)
+classifier = pipeline('zero-shot-classification', model=model, device=-1,
+                       tokenizer=tokenizer, max_length=512, truncation=True)
 
+
+# OCR
 
 #Define helper functions
 def rename_file(original_path, new_name):
@@ -50,6 +59,7 @@ def rename_file(original_path, new_name):
     directory = os.path.dirname(original_path)
     new_path = os.path.join(directory, new_name)
     os.rename(original_path, new_path)
+    logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
     return new_path
 
 def ocr_core(filename):
@@ -61,7 +71,7 @@ def ocr_core(filename):
         text = pytesseract.image_to_string(image) 
         return text
     except Exception as e:
-        print(f"Error processing {filename}: {e}")
+        logging.error(f"Error processing {filename}: {e}")
         return None
 
 def perform_ocr(directory_path, output_file):
@@ -75,7 +85,7 @@ def perform_ocr(directory_path, output_file):
  
     image_data = []
     for image_path in image_paths:
-        print(f"Processing {image_path}...")
+        logging.info(f"Processing {image_path}...")
         text = ocr_core(image_path)
         if text:
             image_data.append({
@@ -95,7 +105,7 @@ output_file = 'ocr_results.json'
 perform_ocr(DIRECTORY_PATH, output_file)
 
  
-## LLM
+# LLM
  
 def classify_texts(ocr_results):
     """
@@ -111,13 +121,20 @@ def classify_texts(ocr_results):
  
         country_labels = ["australia", "uk", "singapore","malaysia", "southafrica"]
         layout_labels = ["freight", "utility", "product", "service"]
+        
+        start_time = time.time()
+        country_result = classifier(text, candidate_labels=country_labels)
+        layout_result = classifier(text, candidate_labels=layout_labels)
+        end_time = time.time()
+
+        country = country_result['labels'][0]
+        country_score = country_result['scores'][0]
+        layout = layout_result['labels'][0]
+        layout_score = layout_result['scores'][0]
  
-        country = pipeline(text, candidate_labels=country_labels)['labels'][0]
-        layout = pipeline(text, candidate_labels=layout_labels)['labels'][0]
- 
-        #new_name = f"invoice-{country}-{layout}{os.path.splitext(image_path)[1]}"
-        #rename_file(image_path, new_name)
-        print(f"Classified {image_path} as {country} and {layout}")
+        new_name = f"invoice-{country}-{layout}{os.path.splitext(image_path)[1]}"
+        rename_file(image_path, new_name)
+        logging.info(f"{image_path[DP_LENGTH:]}: {country} ({country_score:.2f} confidence) | {layout} ({layout_score:.2f} confidence) in {end_time - start_time:.2f} seconds.")
  
     return None
     

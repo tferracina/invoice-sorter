@@ -1,3 +1,5 @@
 venv/
 .env
 ocr_results.json
+ocr_classification.log
+media/
