@@ -18,8 +18,8 @@ logging.basicConfig(filename='ocr_classification.log', level=logging.INFO,
 #Set the environment variables
 load_dotenv()
 HUGGINGFACE_ACCESS_TOKEN = os.getenv('HUGGINGFACE_ACCESS_TOKEN')
-DIRECTORY_PATH = os.getenv('DIRECTORY_PATH')
-DP_LENGTH = len(DIRECTORY_PATH) + 1
+DIRECTORY_PATH_TEST = os.getenv('DIRECTORY_PATH_TEST')
+DP_LENGTH = len(DIRECTORY_PATH_TEST) + 1
 
 #Load the model
 model_id = 'knowledgator/comprehend_it-base'
@@ -50,6 +50,7 @@ classifier = pipeline('zero-shot-classification', model=model, device=-1,
 
 
 # OCR
+from prepare_data import perform_ocr
 
 #Define helper functions
 def rename_file(original_path, new_name):
@@ -61,48 +62,9 @@ def rename_file(original_path, new_name):
     os.rename(original_path, new_path)
     logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
     return new_path
-
-def ocr_core(filename):
-    """
-    Perform OCR on a single image, return the text
-    """
-    try:
-        image = Image.open(filename)
-        text = pytesseract.image_to_string(image) 
-        return text
-    except Exception as e:
-        logging.error(f"Error processing {filename}: {e}")
-        return None
-
-def perform_ocr(directory_path, output_file):
-    """
-    Perform OCR on all images in a given directory, save the results to a JSON file
-    """
-    image_extensions = ['*.png', '*.jpg', '*.jpeg']
-    image_paths = []
-    for extension in image_extensions:
-        image_paths.extend(glob.glob(os.path.join(directory_path, extension)))
- 
-    image_data = []
-    for image_path in image_paths:
-        logging.info(f"Processing {image_path}...")
-        text = ocr_core(image_path)
-        if text:
-            image_data.append({
-                'filename': os.path.basename(image_path),
-                'ocr_text': text
-            })
-        else:
-            image_data.append({
-                'filename': os.path.basename(image_path),
-                'ocr_text': 'Error or no text found'
-            })
-    
-    with open(output_file, 'w') as f:
-        json.dump(image_data, f, indent=4)
  
 output_file = 'ocr_results.json'
-perform_ocr(DIRECTORY_PATH, output_file)
+perform_ocr(DIRECTORY_PATH_TEST, output_file)
 
  
 # LLM
@@ -117,9 +79,9 @@ def classify_texts(ocr_results):
  
     for entry in image_data:
         text = entry['ocr_text']
-        image_path = os.path.join(DIRECTORY_PATH, entry['filename'])
+        image_path = os.path.join(DIRECTORY_PATH_TEST, entry['filename'])
  
-        country_labels = ["australia", "uk", "singapore","malaysia", "southafrica"]
+        country_labels = ["australia", "uk", "singapore", "malaysia", "southafrica"]
         layout_labels = ["freight", "utility", "product", "service"]
         
         start_time = time.time()
@@ -133,8 +95,8 @@ def classify_texts(ocr_results):
         layout_score = layout_result['scores'][0]
  
         new_name = f"invoice-{country}-{layout}{os.path.splitext(image_path)[1]}"
-        rename_file(image_path, new_name)
-        logging.info(f"{image_path[DP_LENGTH:]}: {country} ({country_score:.2f} confidence) | {layout} ({layout_score:.2f} confidence) in {end_time - start_time:.2f} seconds.")
+        #rename_file(image_path, new_name)
+        logging.info(f"Classified {image_path[DP_LENGTH:]} as: {country} ({country_score:.2f} confidence) | {layout} ({layout_score:.2f} confidence) in {end_time - start_time:.2f} seconds.")
  
     return None
     

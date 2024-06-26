@@ -1,5 +1,8 @@
-venv/
+venv1/
 .env
 ocr_results.json
+train_ocr_results.json
 ocr_classification.log
+data_preparation.log
 media/
+__pycache__/
