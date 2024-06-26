@@ -1,7 +1,7 @@
 import os
 import json
 from huggingface_hub import hf_hub_download
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, TrainingArguments, Trainer
 from datasets import Dataset, load_dataset
 from liqfit.modeling import LiqFitModel
 from liqfit.collators import NLICollator
@@ -10,18 +10,25 @@ from liqfit.datasets import NLIDataset
 from dotenv import load_dotenv
 import logging
 import time
-from prepare_data import rename_file
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+import numpy as np
 
+load_dotenv(dotenv_path='package/.env')
 
-#Set up logging
-logging.basicConfig(filename='ocr_classification.log', level=logging.INFO,
+# Set up logging
+log_dir = '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/logs'
+
+logging.basicConfig(filename=os.path.join(log_dir, 'finetuning.log'), level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 #Set the environment variables
-load_dotenv()
 HUGGINGFACE_ACCESS_TOKEN = os.getenv('HUGGINGFACE_ACCESS_TOKEN')
-DIRECTORY_PATH_TRAIN = os.getenv('DIRECTORY_PATH_TRAIN')
-DP_LENGTH = len(DIRECTORY_PATH_TRAIN) + 1
+DIRECTORY_PATH_DATA = os.getenv('DIRECTORY_PATH_DATA')
+DP_LENGTH = len(DIRECTORY_PATH_DATA) + 1
+
+#Training data
+training_data = DIRECTORY_PATH_DATA + '/processed/train_ocr_results.json'
+print("Fine-Tuning Script")
 
 #Load the model
 model_id = 'knowledgator/comprehend_it-base'
@@ -51,9 +58,31 @@ classifier = pipeline('zero-shot-classification', model=model, device=-1,
                        tokenizer=tokenizer, max_length=512, truncation=True)
 
 
-# Fine tuning
+# Data Preparation
 
-output_file = 'train_ocr_results.json'
+def rename_file(original_path, new_name):
+    """
+    Rename the file to the new name.
+    """
+    directory = os.path.dirname(original_path)
+    new_path = os.path.join(directory, new_name)
+    os.rename(original_path, new_path)
+    logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
+    return new_path
+
+def extract_label_from_filename(filename):
+    """
+    Extract the label from the filename.
+    The label is the part between the second hyphen and the period.
+    Example: "service-7-uk.pdf" -> "uk"
+    """
+    parts = filename.split('-')
+    if len(parts) >= 3:
+        label_part = parts[2]  # This part contains "uk.pdf"
+        label = label_part.split('.')[0]  # Remove the ".pdf" part
+        return label
+    else:
+        return None
 
 def prepare_dataset(prepared_data_file):
     """
@@ -62,28 +91,39 @@ def prepare_dataset(prepared_data_file):
     with open(prepared_data_file, 'r') as f:
         image_data = json.load(f)
 
-    texts = [entry['ocr_text'] for entry in image_data]
-    labels = ["australia", "uk", "singapore", "malaysia", "southafrica"]
+    text = [entry['ocr_text'] for entry in image_data]
+    label = [extract_label_from_filename(entry['filename']) for entry in image_data]
     
-    dataset = Dataset.from_dict({'text': texts, 'label': labels})
+    dataset = Dataset.from_dict({'text': text, 'label': label})
     return dataset
 
-train_dataset = prepare_dataset(output_file)
-test_dataset = prepare_dataset(output_file)
+train_dataset = prepare_dataset(training_data)
+test_dataset = prepare_dataset(training_data)
 
 # Fine-Tuning
-def fine_tune_model(train_dataset, test_dataset):
-    classes = ["australia", "uk", "singapore", "malaysia", "southafrica"]
 
+def fine_tune_model(train_dataset, test_dataset, model_id, tokenizer):
+    logging.info("Starting the fine-tuning process...")
+
+    classes = ["aus", "uk", "sg", "mys", "southafrica"]
+
+    logging.info("Loading datasets...")
     nli_train_dataset = NLIDataset.load_dataset(train_dataset, classes=classes)
     nli_test_dataset = NLIDataset.load_dataset(test_dataset, classes=classes)
 
+    logging.info("Loading the backbone model...")
     backbone_model = AutoModelForSequenceClassification.from_pretrained(model_id)
-    loss_func = FocalLoss(multi_target=False, num_classes=len(classes))
+
+    logging.info("Setting up the loss function...")
+    loss_func = FocalLoss()
+
+    logging.info("Initializing the LiqFit model...")
     model = LiqFitModel(backbone_model.config, backbone_model, loss_func=loss_func)
 
+    logging.info("Preparing data collator...")
     data_collator = NLICollator(tokenizer, max_length=128, padding=True, truncation=True)
 
+    logging.info("Setting up training arguments...")
     training_args = TrainingArguments(
         output_dir='comprehendo',
         learning_rate=3e-5,
@@ -91,12 +131,13 @@ def fine_tune_model(train_dataset, test_dataset):
         per_device_eval_batch_size=3,
         num_train_epochs=9,
         weight_decay=0.01,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_steps=5000,
         save_total_limit=3,
         remove_unused_columns=False,
     )
 
+    logging.info("Initializing Trainer...")
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -104,12 +145,34 @@ def fine_tune_model(train_dataset, test_dataset):
         eval_dataset=nli_test_dataset,
         tokenizer=tokenizer,
         data_collator=data_collator,
+        compute_metrics=compute_metrics,
     )
 
+    logging.info("Starting training...")
     trainer.train()
+    logging.info("Training complete.")
+
+    # Evaluate the model
+    logging.info("Evaluating the model...")
+    metrics = trainer.evaluate()
+    logging.info(f"Evaluation metrics: {metrics}")
+    print(f"Evaluation metrics: {metrics}")
+
     return model
 
-fine_tuned_model = fine_tune_model(train_dataset, test_dataset)
+def compute_metrics(p):
+    preds = np.argmax(p.predictions, axis=1)
+    labels = p.label_ids
+    accuracy = accuracy_score(labels, preds)
+    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='weighted')
+    return {
+        'accuracy': accuracy,
+        'precision': precision,
+        'recall': recall,
+        'f1': f1,
+    }
+
+fine_tuned_model = fine_tune_model(train_dataset, test_dataset, model_id, tokenizer)
 
 # Integrate Fine-Tuned Model
 classifier = pipeline('zero-shot-classification', model=fine_tuned_model, device=-1, tokenizer=tokenizer, max_length=512, truncation=True)
@@ -126,7 +189,7 @@ def classify_texts(ocr_results):
  
     for entry in image_data:
         text = entry['ocr_text']
-        image_path = os.path.join(DIRECTORY_PATH_TRAIN, entry['filename'])
+        image_path = os.path.join(DIRECTORY_PATH_DATA, entry['filename'])
  
         country_labels = ["australia", "uk", "singapore", "malaysia", "southafrica"]
         layout_labels = ["freight", "utility", "product", "service"]
@@ -147,4 +210,4 @@ def classify_texts(ocr_results):
  
     return None
     
-classify_texts(output_file)
+#classify_texts(output_file)

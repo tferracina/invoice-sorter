@@ -8,16 +8,20 @@ import logging
 from PIL import Image
 from pdf2image import convert_from_path
 
-#Set up logging
-logging.basicConfig(filename='logs/data_preparation.log', level=logging.INFO,
+print("Data Preparation Script")
+
+log_dir = 'logs'
+
+# Set up logging
+logging.basicConfig(filename=os.path.join(log_dir, 'data_preparation.log'), level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 load_dotenv(dotenv_path='package/.env')
 
-DIRECTORY_PATH_TRAIN = os.getenv('DIRECTORY_PATH_TRAIN')
-DP_LENGTH = len(DIRECTORY_PATH_TRAIN) + 1
+DIRECTORY_PATH_DATA = os.getenv('DIRECTORY_PATH_DATA') + '/raw/train'
+DP_LENGTH = len(DIRECTORY_PATH_DATA) + 1
 
-logging.info(f"Directory path set to: {DIRECTORY_PATH_TRAIN}")
+logging.info(f"Directory path set to: {DIRECTORY_PATH_DATA}")
 
 def rename_file(original_path, new_name):
     """
@@ -118,12 +122,12 @@ def perform_ocr(directory_path, output_file):
         if result_pdf:
             image_data.append({
                 'filename': os.path.basename(pdf_path),
-                'searchable_pdf': os.path.basename(result_pdf)
+                'ocr_text': os.path.basename(result_pdf)
             })
         else:
             image_data.append({
                 'filename': os.path.basename(pdf_path),
-                'searchable_pdf': 'Error or no text found'
+                'ocr_text': 'Error or no text found'
             })
     
     with open(output_file, 'w') as f:
@@ -131,4 +135,4 @@ def perform_ocr(directory_path, output_file):
         logging.info(f"OCR results successfully saved to {output_file}")
 
 output_file = 'data/processed/train_ocr_results.json'
-perform_ocr(DIRECTORY_PATH_TRAIN, output_file)
+perform_ocr(DIRECTORY_PATH_DATA, output_file)
