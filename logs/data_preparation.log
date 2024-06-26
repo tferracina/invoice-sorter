@@ -1,0 +1,328 @@
+2024-06-25 10:56:25,175 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:56:25,175 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:56:25,175 WARNING:No images found in directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:56:25,175 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 10:58:24,512 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:58:24,512 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:58:24,512 WARNING:No images found in directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 10:58:24,512 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 11:26:41,661 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:26:41,662 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:26:41,662 WARNING:No images or PDFs found in directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:26:41,662 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 11:38:43,795 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:38:43,795 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:38:43,795 WARNING:No images or PDFs found in directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:38:43,796 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 11:48:29,684 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:48:29,685 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:48:29,686 WARNING:No images or PDFs found in directory: /Users/tommasoferracina/alfagomma/file-reformatter/media/train
+2024-06-25 11:48:29,686 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 12:00:09,818 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test
+2024-06-25 12:00:09,818 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test
+2024-06-25 12:00:09,819 INFO:Processing image /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-uk-service.jpg...
+2024-06-25 12:00:09,819 INFO:Attempting OCR on /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-uk-service.jpg
+2024-06-25 12:00:10,489 INFO:Processing image /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-Malaysia-freight.jpg...
+2024-06-25 12:00:10,489 INFO:Attempting OCR on /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-Malaysia-freight.jpg
+2024-06-25 12:00:11,029 INFO:Processing image /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-australia-product.jpg...
+2024-06-25 12:00:11,029 INFO:Attempting OCR on /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-australia-product.jpg
+2024-06-25 12:00:11,317 INFO:Processing image /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-singapore-product.jpeg...
+2024-06-25 12:00:11,317 INFO:Attempting OCR on /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/test/invoice-singapore-product.jpeg
+2024-06-25 12:00:11,830 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 12:01:17,551 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:01:17,551 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:01:17,551 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-25 12:01:17,552 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:01:22,436 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:01:22,436 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-25 12:01:22,436 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-25 12:01:22,863 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:01:22,863 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-25 12:01:22,863 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:01:24,832 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:01:24,832 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-25 12:01:24,832 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-25 12:01:25,081 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:01:25,083 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-25 12:01:25,083 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:01:27,871 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:01:27,871 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-25 12:01:27,871 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-25 12:01:28,202 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:01:28,203 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-25 12:01:28,203 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:01:30,959 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:01:30,960 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-25 12:01:30,960 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-25 12:01:31,208 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:01:31,208 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 12:03:57,408 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:03:57,409 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:03:57,410 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-25 12:03:57,410 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:03:59,086 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:03:59,086 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf...
+2024-06-25 12:03:59,086 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-25 12:03:59,908 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:03:59,908 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-25 12:03:59,908 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-25 12:04:00,368 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:00,368 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-25 12:04:00,368 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:04:02,335 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:04:02,335 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf...
+2024-06-25 12:04:02,335 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-25 12:04:03,108 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:03,108 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-25 12:04:03,108 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-25 12:04:03,351 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:03,351 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf...
+2024-06-25 12:04:03,351 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-25 12:04:03,719 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:03,720 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-25 12:04:03,720 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:04:06,470 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:04:06,471 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-25 12:04:06,471 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-25 12:04:06,803 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:06,803 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-25 12:04:06,803 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:04:09,507 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:04:09,507 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-25 12:04:09,507 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-25 12:04:09,757 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:09,757 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf...
+2024-06-25 12:04:09,757 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-25 12:04:10,249 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf: Command '['ocrmypdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf', '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable_searchable.pdf']' returned non-zero exit status 6.
+2024-06-25 12:04:10,249 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-25 12:08:25,777 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:08:25,777 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-25 12:08:25,778 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-25 12:08:25,778 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:08:25,779 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-25 12:08:25,779 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf...
+2024-06-25 12:08:25,779 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-25 12:08:25,983 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-25 12:08:25,983 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-25 12:08:25,983 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-25 12:08:26,059 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-25 12:08:26,059 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-25 12:08:26,059 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:08:26,060 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-25 12:08:26,060 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf...
+2024-06-25 12:08:26,060 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-25 12:08:26,223 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-25 12:08:26,223 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-25 12:08:26,223 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-25 12:08:26,249 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-25 12:08:26,249 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf...
+2024-06-25 12:08:26,249 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-25 12:08:26,292 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-25 12:08:26,292 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-25 12:08:26,292 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:08:26,294 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-25 12:08:26,294 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-25 12:08:26,294 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-25 12:08:26,403 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-25 12:08:26,403 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-25 12:08:26,403 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:08:26,405 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-25 12:08:26,405 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-25 12:08:26,405 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-25 12:08:26,427 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-25 12:08:26,427 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf...
+2024-06-25 12:08:26,427 INFO:Attempting OCR on PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-25 12:08:26,509 INFO:OCR successful for PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-25 12:08:26,510 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-26 09:16:40,343 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:16:40,343 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:16:40,343 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-26 09:16:40,343 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:16:42,940 INFO:Processed page 1
+2024-06-26 09:16:42,940 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:16:42,940 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf...
+2024-06-26 09:16:42,940 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-26 09:16:45,149 INFO:Processed page 1
+2024-06-26 09:16:46,864 INFO:Processed page 2
+2024-06-26 09:16:46,864 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-26 09:16:46,864 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-26 09:16:46,864 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:16:48,027 INFO:Processed page 1
+2024-06-26 09:16:48,027 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:16:48,028 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-26 09:16:48,028 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:16:49,692 INFO:Processed page 1
+2024-06-26 09:16:49,693 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:16:49,693 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf...
+2024-06-26 09:16:49,693 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-26 09:16:50,818 INFO:Processed page 1
+2024-06-26 09:16:52,819 INFO:Processed page 2
+2024-06-26 09:16:52,819 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-26 09:16:52,819 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-26 09:16:52,819 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:16:54,234 INFO:Processed page 1
+2024-06-26 09:16:54,234 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:16:54,234 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf...
+2024-06-26 09:16:54,234 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-26 09:16:55,396 INFO:Processed page 1
+2024-06-26 09:16:55,396 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-26 09:16:55,396 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-26 09:16:55,396 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:16:56,455 INFO:Processed page 1
+2024-06-26 09:16:58,443 INFO:Processed page 2
+2024-06-26 09:16:58,443 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:16:58,444 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-26 09:16:58,444 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:16:59,546 INFO:Processed page 1
+2024-06-26 09:17:01,838 INFO:Processed page 2
+2024-06-26 09:17:02,836 INFO:Processed page 3
+2024-06-26 09:17:02,836 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:17:02,837 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-26 09:17:02,837 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:17:05,000 INFO:Processed page 1
+2024-06-26 09:17:06,630 INFO:Processed page 2
+2024-06-26 09:17:06,630 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:17:06,631 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-26 09:17:06,631 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:17:08,035 INFO:Processed page 1
+2024-06-26 09:17:08,035 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:17:08,036 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf...
+2024-06-26 09:17:08,036 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-26 09:17:09,686 INFO:Processed page 1
+2024-06-26 09:17:09,686 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-26 09:17:09,686 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-26 09:33:48,709 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:33:48,709 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:33:48,710 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-26 09:33:48,710 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:33:49,667 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf: string indices must be integers
+2024-06-26 09:33:49,667 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf...
+2024-06-26 09:33:49,667 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-26 09:33:50,716 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf: string indices must be integers
+2024-06-26 09:33:50,716 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-26 09:33:50,716 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:33:51,837 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf: string indices must be integers
+2024-06-26 09:33:51,837 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-26 09:33:51,837 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:33:52,993 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf: string indices must be integers
+2024-06-26 09:33:52,993 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf...
+2024-06-26 09:33:52,993 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-26 09:33:53,927 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf: string indices must be integers
+2024-06-26 09:33:53,928 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-26 09:33:53,928 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:33:54,725 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf: string indices must be integers
+2024-06-26 09:33:54,725 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf...
+2024-06-26 09:33:54,725 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-26 09:33:55,584 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf: string indices must be integers
+2024-06-26 09:33:55,585 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-26 09:33:55,585 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:33:56,478 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf: string indices must be integers
+2024-06-26 09:33:56,479 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-26 09:33:56,479 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:33:57,347 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf: string indices must be integers
+2024-06-26 09:33:57,348 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-26 09:33:57,348 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:33:58,357 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf: string indices must be integers
+2024-06-26 09:33:58,357 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-26 09:33:58,357 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:33:59,189 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf: string indices must be integers
+2024-06-26 09:33:59,189 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf...
+2024-06-26 09:33:59,189 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-26 09:34:00,292 ERROR:Error processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf: string indices must be integers
+2024-06-26 09:34:00,293 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-26 09:35:38,013 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:35:38,013 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:35:38,014 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-26 09:35:38,014 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:35:40,029 INFO:Processed page 1
+2024-06-26 09:35:40,029 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:35:40,029 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf...
+2024-06-26 09:35:40,029 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-26 09:35:43,080 INFO:Processed page 1
+2024-06-26 09:35:45,549 INFO:Processed page 2
+2024-06-26 09:35:45,549 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk_searchable.pdf
+2024-06-26 09:35:45,549 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-26 09:35:45,549 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:35:47,429 INFO:Processed page 1
+2024-06-26 09:35:47,429 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:35:47,429 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-26 09:35:47,429 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:35:50,112 INFO:Processed page 1
+2024-06-26 09:35:50,112 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:35:50,112 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf...
+2024-06-26 09:35:50,112 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-26 09:35:52,017 INFO:Processed page 1
+2024-06-26 09:35:55,037 INFO:Processed page 2
+2024-06-26 09:35:55,037 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk_searchable.pdf
+2024-06-26 09:35:55,038 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-26 09:35:55,038 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:35:57,238 INFO:Processed page 1
+2024-06-26 09:35:57,238 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:35:57,239 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf...
+2024-06-26 09:35:57,239 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-26 09:35:59,138 INFO:Processed page 1
+2024-06-26 09:35:59,138 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk_searchable.pdf
+2024-06-26 09:35:59,138 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-26 09:35:59,138 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:36:00,996 INFO:Processed page 1
+2024-06-26 09:36:03,792 INFO:Processed page 2
+2024-06-26 09:36:03,792 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:36:03,793 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-26 09:36:03,793 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:36:05,671 INFO:Processed page 1
+2024-06-26 09:36:08,717 INFO:Processed page 2
+2024-06-26 09:36:10,457 INFO:Processed page 3
+2024-06-26 09:36:10,457 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:36:10,458 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-26 09:36:10,458 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:36:13,469 INFO:Processed page 1
+2024-06-26 09:36:16,004 INFO:Processed page 2
+2024-06-26 09:36:16,005 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:36:16,006 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-26 09:36:16,006 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:36:18,116 INFO:Processed page 1
+2024-06-26 09:36:18,116 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:36:18,116 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf...
+2024-06-26 09:36:18,116 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-26 09:36:20,684 INFO:Processed page 1
+2024-06-26 09:36:20,684 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk_searchable.pdf
+2024-06-26 09:36:20,685 INFO:OCR results successfully saved to train_ocr_results.json
+2024-06-26 09:38:06,681 INFO:Directory path set to: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:38:06,682 INFO:Starting OCR processing for directory: /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train
+2024-06-26 09:38:06,682 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf...
+2024-06-26 09:38:06,682 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:38:08,681 INFO:Processed page 1
+2024-06-26 09:38:08,681 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-7-uk.pdf
+2024-06-26 09:38:08,681 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf...
+2024-06-26 09:38:08,681 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:38:10,548 INFO:Processed page 1
+2024-06-26 09:38:10,548 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-3-aus.pdf
+2024-06-26 09:38:10,549 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf...
+2024-06-26 09:38:10,549 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:38:13,223 INFO:Processed page 1
+2024-06-26 09:38:13,223 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/product-13-uk.pdf
+2024-06-26 09:38:13,223 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf...
+2024-06-26 09:38:13,223 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:38:15,386 INFO:Processed page 1
+2024-06-26 09:38:15,386 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/service-3-aus.pdf
+2024-06-26 09:38:15,387 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf...
+2024-06-26 09:38:15,387 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:38:17,164 INFO:Processed page 1
+2024-06-26 09:38:19,963 INFO:Processed page 2
+2024-06-26 09:38:19,963 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-uk.pdf
+2024-06-26 09:38:19,964 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf...
+2024-06-26 09:38:19,964 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:38:21,803 INFO:Processed page 1
+2024-06-26 09:38:25,127 INFO:Processed page 2
+2024-06-26 09:38:26,831 INFO:Processed page 3
+2024-06-26 09:38:26,832 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-1-aus.pdf
+2024-06-26 09:38:26,832 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf...
+2024-06-26 09:38:26,832 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:38:29,830 INFO:Processed page 1
+2024-06-26 09:38:32,351 INFO:Processed page 2
+2024-06-26 09:38:32,351 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/freight-7-uk.pdf
+2024-06-26 09:38:32,352 INFO:Processing PDF /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf...
+2024-06-26 09:38:32,352 INFO:Starting OCR for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:38:34,483 INFO:Processed page 1
+2024-06-26 09:38:34,484 INFO:OCR completed successfully for /Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/media/train/utility-1-mys.pdf
+2024-06-26 09:38:34,484 INFO:OCR results successfully saved to train_ocr_results.json

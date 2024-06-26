@@ -21,6 +21,16 @@ if not DIRECTORY_PATH_TRAIN:
 
 logging.info(f"Directory path set to: {DIRECTORY_PATH_TRAIN}")
 
+def rename_file(original_path, new_name):
+    """
+    Rename the file to the new name.
+    """
+    directory = os.path.dirname(original_path)
+    new_path = os.path.join(directory, new_name)
+    os.rename(original_path, new_path)
+    logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
+    return new_path
+
 def auto_orient_image(image):
     """
     Use Tesseract OSD to automatically detect and correct image orientation.

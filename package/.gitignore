@@ -1,0 +1,24 @@
+# Virtual environment
+venv1/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+
+# Data files
+data/raw/
+data/processed/
+data/*.json
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code settings
+.vscode/
+
+# MacOS
+.DS_Store
