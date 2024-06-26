@@ -9,15 +9,13 @@ from PIL import Image
 from pdf2image import convert_from_path
 
 #Set up logging
-logging.basicConfig(filename='data_preparation.log', level=logging.INFO,
+logging.basicConfig(filename='logs/data_preparation.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
-load_dotenv()
+load_dotenv(dotenv_path='package/.env')
 
 DIRECTORY_PATH_TRAIN = os.getenv('DIRECTORY_PATH_TRAIN')
-if not DIRECTORY_PATH_TRAIN:
-    logging.error("DIRECTORY_PATH not set in .env file")
-    raise EnvironmentError("DIRECTORY_PATH not set in .env file")
+DP_LENGTH = len(DIRECTORY_PATH_TRAIN) + 1
 
 logging.info(f"Directory path set to: {DIRECTORY_PATH_TRAIN}")
 
@@ -64,16 +62,14 @@ def ocr_pdf(input_pdf):
     try:
         logging.info(f"Starting OCR for {input_pdf}")
         images = convert_from_path(input_pdf)
-        all_text = []  # List to store all page texts
+        all_text = []
 
         for i, image in enumerate(images):
             reoriented_image = auto_orient_image(image)
-            # Perform OCR using pytesseract directly on the PIL Image object
             text = pytesseract.image_to_string(reoriented_image)
             all_text.append(text)
             logging.info(f"Processed page {i+1}")
 
-        # Combine all text into one string
         combined_text = "\n".join(all_text)
         logging.info(f"OCR completed successfully for {input_pdf}")
 
@@ -102,7 +98,6 @@ def perform_ocr(directory_path, output_file):
 
     image_data = []
     
-    # Process images
     for image_path in image_paths:
         logging.info(f"Processing image {image_path}...")
         text = ocr_image(image_path)
@@ -117,7 +112,6 @@ def perform_ocr(directory_path, output_file):
                 'ocr_text': 'Error or no text found'
             })
     
-    # Process PDFs
     for pdf_path in pdf_paths:
         logging.info(f"Processing PDF {pdf_path}...")
         result_pdf = ocr_pdf(pdf_path)
@@ -136,5 +130,5 @@ def perform_ocr(directory_path, output_file):
         json.dump(image_data, f, indent=4)
         logging.info(f"OCR results successfully saved to {output_file}")
 
-output_file = 'train_ocr_results.json'
+output_file = 'data/processed/train_ocr_results.json'
 perform_ocr(DIRECTORY_PATH_TRAIN, output_file)

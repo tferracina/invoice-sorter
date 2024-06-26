@@ -1,8 +1,6 @@
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/bin/tesseract'
-from PIL import Image
 import os
-import glob
 import json
 from huggingface_hub import hf_hub_download
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
@@ -50,18 +48,7 @@ classifier = pipeline('zero-shot-classification', model=model, device=-1,
 
 
 # OCR
-from prepare_data import perform_ocr
-
-#Define helper functions
-def rename_file(original_path, new_name):
-    """
-    Rename the file to the new name.
-    """
-    directory = os.path.dirname(original_path)
-    new_path = os.path.join(directory, new_name)
-    os.rename(original_path, new_path)
-    logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
-    return new_path
+from prepare_data import perform_ocr, rename_file
  
 output_file = 'ocr_results.json'
 perform_ocr(DIRECTORY_PATH_TEST, output_file)
