@@ -1,7 +1,7 @@
 import os
 import json
 from huggingface_hub import hf_hub_download
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, TrainingArguments, Trainer
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, TrainingArguments, Trainer, AutoConfig
 from datasets import Dataset, load_dataset
 from liqfit.modeling import LiqFitModel
 from liqfit.collators import NLICollator
@@ -17,7 +17,6 @@ load_dotenv(dotenv_path='package/.env')
 
 # Set up logging
 log_dir = '/Users/tommasoferracina/alfagomma/document-automation/invoice-sorter/logs'
-
 logging.basicConfig(filename=os.path.join(log_dir, 'finetuning.log'), level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
@@ -25,10 +24,7 @@ logging.basicConfig(filename=os.path.join(log_dir, 'finetuning.log'), level=logg
 HUGGINGFACE_ACCESS_TOKEN = os.getenv('HUGGINGFACE_ACCESS_TOKEN')
 DIRECTORY_PATH_DATA = os.getenv('DIRECTORY_PATH_DATA')
 DP_LENGTH = len(DIRECTORY_PATH_DATA) + 1
-
-#Training data
 training_data = DIRECTORY_PATH_DATA + '/processed/train_ocr_results.json'
-print("Fine-Tuning Script")
 
 #Load the model
 model_id = 'knowledgator/comprehend_it-base'
@@ -41,7 +37,6 @@ filenames = [
     "tokenizer_config.json",
     "spm.model"
 ]
-
 for filename in filenames:
     downloaded_model_path = hf_hub_download(
         repo_id=model_id,
@@ -53,36 +48,24 @@ for filename in filenames:
 #Create the classifier pipeline
 tokenizer = AutoTokenizer.from_pretrained(model_id, legacy=False)
 model = AutoModelForSequenceClassification.from_pretrained(model_id)
-
 classifier = pipeline('zero-shot-classification', model=model, device=-1,
                        tokenizer=tokenizer, max_length=512, truncation=True)
 
-
 # Data Preparation
-
-def rename_file(original_path, new_name):
+def extract_labels_from_filename(filename):
     """
-    Rename the file to the new name.
-    """
-    directory = os.path.dirname(original_path)
-    new_path = os.path.join(directory, new_name)
-    os.rename(original_path, new_path)
-    logging.info(f"File renamed from {original_path[DP_LENGTH:]} to {new_path[DP_LENGTH:]}")
-    return new_path
-
-def extract_label_from_filename(filename):
-    """
-    Extract the label from the filename.
-    The label is the part between the second hyphen and the period.
-    Example: "service-7-uk.pdf" -> "uk"
+    Extract the country and layout labels from the filename.
     """
     parts = filename.split('-')
     if len(parts) >= 3:
         label_part = parts[2]  # This part contains "uk.pdf"
-        label = label_part.split('.')[0]  # Remove the ".pdf" part
+        country_label = label_part.split('.')[0]  # Remove the ".pdf" part
+        layout_label = parts[1]
+        label = f"invoice-{layout_label}-{country_label}"
+
         return label
     else:
-        return None
+        return None, None
 
 def prepare_dataset(prepared_data_file):
     """
@@ -91,28 +74,43 @@ def prepare_dataset(prepared_data_file):
     with open(prepared_data_file, 'r') as f:
         image_data = json.load(f)
 
-    text = [entry['ocr_text'] for entry in image_data]
-    label = [extract_label_from_filename(entry['filename']) for entry in image_data]
-    
-    dataset = Dataset.from_dict({'text': text, 'label': label})
+    texts = [entry['ocr_text'] for entry in image_data]
+    labels = [extract_labels_from_filename(entry['filename']) for entry in image_data]
+
+    dataset = Dataset.from_dict({'text': texts, 'label': labels})
     return dataset
 
 train_dataset = prepare_dataset(training_data)
 test_dataset = prepare_dataset(training_data)
 
-# Fine-Tuning
+country_classes = ["aus", "uk", "sgp", "mys", "zar", "mys"]
+layout_classes = ["freight", "utility", "product", "service"]
 
+labels = []
+label2id = {}
+id2label = {}
+
+for idx, country in enumerate(country_classes):
+    for layout in layout_classes:
+        label = f"invoice-{layout}-{country}"
+        labels.append(label)
+        label2id[label] = len(label2id)
+        id2label[len(id2label)] = label
+
+# Fine-Tuning
 def fine_tune_model(train_dataset, test_dataset, model_id, tokenizer):
     logging.info("Starting the fine-tuning process...")
 
-    classes = ["aus", "uk", "sg", "mys", "southafrica"]
-
     logging.info("Loading datasets...")
-    nli_train_dataset = NLIDataset.load_dataset(train_dataset, classes=classes)
-    nli_test_dataset = NLIDataset.load_dataset(test_dataset, classes=classes)
+    nli_train_dataset = NLIDataset.load_dataset(train_dataset, classes=labels)
+    nli_test_dataset = NLIDataset.load_dataset(test_dataset, classes=labels)
 
     logging.info("Loading the backbone model...")
-    backbone_model = AutoModelForSequenceClassification.from_pretrained(model_id)
+    config = AutoConfig.from_pretrained(model_id, num_labels=len(labels))
+    config.label2id = label2id
+    config.id2label = id2label
+
+    backbone_model = AutoModelForSequenceClassification.from_pretrained(model_id, config=config, ignore_mismatched_sizes=True)
 
     logging.info("Setting up the loss function...")
     loss_func = FocalLoss()
@@ -165,6 +163,7 @@ def compute_metrics(p):
     labels = p.label_ids
     accuracy = accuracy_score(labels, preds)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='weighted')
+    print(f"Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1: {f1}")
     return {
         'accuracy': accuracy,
         'precision': precision,
@@ -175,7 +174,7 @@ def compute_metrics(p):
 fine_tuned_model = fine_tune_model(train_dataset, test_dataset, model_id, tokenizer)
 
 # Integrate Fine-Tuned Model
-classifier = pipeline('zero-shot-classification', model=fine_tuned_model, device=-1, tokenizer=tokenizer, max_length=512, truncation=True)
+tuned_classifier = pipeline('zero-shot-classification', model=fine_tuned_model, device=-1, tokenizer=tokenizer, max_length=512, truncation=True)
  
 # LLM
  
@@ -183,31 +182,24 @@ def classify_texts(ocr_results):
     """
    Classify the OCR results with zero-shot classification, then change the file names accordingly
    """
- 
     with open(ocr_results, 'r') as f:
         image_data = json.load(f)
  
     for entry in image_data:
         text = entry['ocr_text']
         image_path = os.path.join(DIRECTORY_PATH_DATA, entry['filename'])
- 
-        country_labels = ["australia", "uk", "singapore", "malaysia", "southafrica"]
-        layout_labels = ["freight", "utility", "product", "service"]
         
         start_time = time.time()
-        country_result = classifier(text, candidate_labels=country_labels)
-        layout_result = classifier(text, candidate_labels=layout_labels)
+        result = tuned_classifier(text, candidate_labels=labels)
         end_time = time.time()
 
-        country = country_result['labels'][0]
-        country_score = country_result['scores'][0]
-        layout = layout_result['labels'][0]
-        layout_score = layout_result['scores'][0]
+        result = result['labels'][0]
+        score = result['scores'][0]
  
-        new_name = f"invoice-{country}-{layout}{os.path.splitext(image_path)[1]}"
-        rename_file(image_path, new_name)
-        logging.info(f"Classified {image_path[DP_LENGTH:]} as: {country} ({country_score:.2f} confidence) | {layout} ({layout_score:.2f} confidence) in {end_time - start_time:.2f} seconds.")
+        #new_name = f"{result}{os.path.splitext(image_path)[1]}"
+        #rename_file(image_path, new_name)
+        logging.info(f"Classified {image_path[DP_LENGTH:]} as: {result} ({score:.2f} confidence) in {end_time - start_time:.2f} seconds.")
  
     return None
-    
-#classify_texts(output_file)
+
+#classify_texts(training_data)

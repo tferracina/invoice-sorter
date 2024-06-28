@@ -50,7 +50,7 @@ classifier = pipeline('zero-shot-classification', model=model, device=-1,
 # OCR
 from prepare_data import perform_ocr, rename_file
  
-output_file = 'ocr_results.json'
+output_file = 'data/processed/ocr_results.json'
 perform_ocr(DIRECTORY_PATH_TEST, output_file)
 
  
@@ -70,6 +70,8 @@ def classify_texts(ocr_results):
  
         country_labels = ["australia", "uk", "singapore", "malaysia", "southafrica"]
         layout_labels = ["freight", "utility", "product", "service"]
+
+        label = ['aus-freight', 'invoice-utility-aus-']
         
         start_time = time.time()
         country_result = classifier(text, candidate_labels=country_labels)

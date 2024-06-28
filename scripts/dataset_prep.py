@@ -1,28 +1,61 @@
+import os
+from tika import parser
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/bin/tesseract'
-import json
+from pdf2image import convert_from_path
+from PIL import Image
+
+def is_native_pdf(pdf_path):
+    """
+    Check if the PDF is native or scanned using Tika.
+    Returns True if native, False if scanned.
+    """
+    raw = parser.from_file(pdf_path)
+    content = raw.get('content', '')
+    if content.strip():
+        return True
+    return False
+
+def extract_text_from_native_pdf(pdf_path):
+    """
+    Extract text from a native PDF using Tika.
+    """
+    raw = parser.from_file(pdf_path)
+    return raw.get('content', '')
+
+def extract_text_from_scanned_pdf(pdf_path):
+    """
+    Extract text from a scanned PDF using PyTesseract.
+    """
+    images = convert_from_path(pdf_path)
+    text = ""
+    for image in images:
+        text += pytesseract.image_to_string(image)
+    return text
+
+pdf_path = 'your_pdf_file.pdf'
+
+if is_native_pdf(pdf_path):
+    text = extract_text_from_native_pdf(pdf_path)
+    print("Extracted Text from Native PDF:")
+    print(text)
+else:
+    text = extract_text_from_scanned_pdf(pdf_path)
+    print("Extracted Text from Scanned PDF:")
+    print(text)
+
+
 import os
 import glob
-from dotenv import load_dotenv
+import json
 import logging
 from PIL import Image
+import pytesseract
 from pdf2image import convert_from_path
+from datasets import Dataset
 
-print("Data Preparation Script")
+logging.basicConfig(level=logging.INFO)
 
-# Set up logging
-log_dir = 'logs'
-logging.basicConfig(filename=os.path.join(log_dir, 'data_preparation.log'), level=logging.INFO,
-                    format='%(asctime)s %(levelname)s:%(message)s')
-
-# Set the environment variables
-load_dotenv(dotenv_path='package/.env')
-DIRECTORY_PATH_DATA = os.getenv('DIRECTORY_PATH_DATA') + '/raw/train'
-DP_LENGTH = len(DIRECTORY_PATH_DATA) + 1
-
-logging.info(f"Directory path set to: {DIRECTORY_PATH_DATA}")
-
-# Setting up the OCR functions for orienting image, OCR for image/PDF, and performing OCR on all files in a directory
 def auto_orient_image(image):
     """
     Use Tesseract OSD to automatically detect and correct image orientation.
@@ -73,6 +106,20 @@ def ocr_pdf(input_pdf):
         logging.error(f"Error processing PDF {input_pdf}: {e}")
         return None
 
+def extract_labels_from_filename(filename):
+    """
+    Extract the country and layout labels from the filename.
+    """
+    parts = filename.split('-')
+    if len(parts) >= 3:
+        label_part = parts[2]  # This part contains "uk.pdf"
+        country_label = label_part.split('.')[0]  # Remove the ".pdf" part
+        layout_label = parts[0]
+        label = f"invoice-{layout_label}-{country_label}"
+        return label
+    else:
+        return None
+
 def perform_ocr(directory_path, output_file):
     """
     Perform OCR on all images and PDFs in a given directory, save the results to a JSON file
@@ -95,49 +142,40 @@ def perform_ocr(directory_path, output_file):
     for image_path in image_paths:
         logging.info(f"Processing image {image_path}...")
         text = ocr_image(image_path)
+        label = extract_labels_from_filename(os.path.basename(image_path))
         if text:
             image_data.append({
                 'filename': os.path.basename(image_path),
-                'ocr_text': text
+                'ocr_text': text,
+                'label': label
             })
         else:
             image_data.append({
                 'filename': os.path.basename(image_path),
-                'ocr_text': 'Error or no text found'
+                'ocr_text': 'Error or no text found',
+                'label': label
             })
     
     for pdf_path in pdf_paths:
         logging.info(f"Processing PDF {pdf_path}...")
         result_pdf = ocr_pdf(pdf_path)
+        label = extract_labels_from_filename(os.path.basename(pdf_path))
         if result_pdf:
             image_data.append({
                 'filename': os.path.basename(pdf_path),
-                'ocr_text': os.path.basename(result_pdf)
+                'ocr_text': result_pdf,
+                'label': label
             })
         else:
             image_data.append({
                 'filename': os.path.basename(pdf_path),
-                'ocr_text': 'Error or no text found'
+                'ocr_text': 'Error or no text found',
+                'label': label
             })
     
     with open(output_file, 'w') as f:
         json.dump(image_data, f, indent=4)
         logging.info(f"OCR results successfully saved to {output_file}")
-
-def extract_labels_from_filename(filename):
-    """
-    Extract the country and layout labels from the filename.
-    """
-    parts = filename.split('-')
-    if len(parts) >= 3:
-        label_part = parts[2]  # This part contains "uk.pdf"
-        country_label = label_part.split('.')[0]  # Remove the ".pdf" part
-        layout_label = parts[1]
-        label = f"invoice-{layout_label}-{country_label}"
-
-        return label
-    else:
-        return None, None
 
 def prepare_dataset(prepared_data_file):
     """
@@ -147,10 +185,14 @@ def prepare_dataset(prepared_data_file):
         image_data = json.load(f)
 
     texts = [entry['ocr_text'] for entry in image_data]
-    labels = [extract_labels_from_filename(entry['filename']) for entry in image_data]
+    labels = [entry['label'] for entry in image_data]
 
     dataset = Dataset.from_dict({'text': texts, 'label': labels})
     return dataset
 
-output_file = 'data/processed/train_ocr_results.json'
-perform_ocr(DIRECTORY_PATH_DATA, output_file)
+# Example usage:
+perform_ocr('data/raw/train', 'data/processed/training_data.json')
+# dataset = prepare_dataset('output_file.json')
+
+
+
