@@ -13,6 +13,9 @@ data/raw/
 data/processed/
 data/*.json
 
+# Model
+downloaded_model/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
